@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -30,24 +31,21 @@ public class RequestManager {
         JSONObject credentials = new JSONObject();
         try {
             credentials.put("username", username);
-            credentials.put("password", username);
+            credentials.put("password", password);
 
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, requestString, credentials, response -> {
-                try {
-                    String result = response.get("token").toString();
+                String result = response.toString();
 
-                    Log.d("Result", result.toString());
+                Log.i("dddddd", result);
 
-                } catch (JSONException exception) {
-                    exception.printStackTrace();
-                }
-            }, error -> {
-                Log.d("Result", "ERROR");
+            }, (VolleyError error) -> {
+
+                Log.i("dddddd", "ERROR " + error.toString());
             });
             //Space for the request part
             queue.add(jsonObjectRequest);
         } catch (JSONException e) {
-            Log.d("Result", "ERROR");
+            Log.i("dddddd", "ERROR: " + e.toString());
             e.printStackTrace();
         }
         return null;
