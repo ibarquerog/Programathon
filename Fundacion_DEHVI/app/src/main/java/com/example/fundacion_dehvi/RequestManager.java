@@ -6,13 +6,19 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class RequestManager {
     //Log.d("Payload",credentials.toString(2));
@@ -46,6 +52,7 @@ public class RequestManager {
                     LoginData.scope = loginData.get("scope").toString();
 
                     JSONObject userInfo = response.getJSONObject("UserInfo");
+                    UserInfo.dni = username;
                     UserInfo.uid = Integer.parseInt(userInfo.get("uid").toString());
                     UserInfo.name = userInfo.get("givenName").toString();
                     UserInfo.email = userInfo.get("email").toString();
@@ -55,10 +62,11 @@ public class RequestManager {
                     ref.onRequestLoginResponse(UserInfo.role);
                     Log.i("dddddd", UserInfo.role);
                 } catch (JSONException e) {
+                    Log.i("dddddd", "ERROR: " + e.toString());
                     e.printStackTrace();
                 }
 
-                //Log.i("dddddd", result);
+                Log.i("dddddd", result);
 
             }, (VolleyError error) -> {
                 ref.onRequestLoginResponse("");
@@ -88,5 +96,43 @@ public class RequestManager {
     public void setCurrent(Context current) {
         this.current = current;
     }
+
+    //public void pba(String access_token, String dni){
+
+            //String requestString = this.connectionString.concat("/Teacher/GetByDNI").concat("?dni=").concat(dni);
+
+
+    public void requestGetTeacherByDNI(){
+        String requestString = this.connectionString.concat("/Teacher/GetByDNI");
+        RequestQueue queue = Volley.newRequestQueue(current);
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, requestString,
+                null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d("Response", response.toString());
+
+                Toast.makeText(getCurrent(), "" + response.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error", "Error: " + error.getMessage());
+                Toast.makeText(getCurrent(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", "Bearer " + LoginData.accessToken);
+                return headers;
+            }
+        };
+        queue.add(req);
+    }
+
+
+
 }
 
