@@ -6,6 +6,7 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
+<<<<<<< Updated upstream
 8-->C:\Users\jesod\Documents\GitHub\Programathon\app\src\main\AndroidManifest.xml
 9        android:targetSdkVersion="29" />
 9-->C:\Users\jesod\Documents\GitHub\Programathon\app\src\main\AndroidManifest.xml
@@ -50,10 +51,60 @@
 30                <category android:name="android.intent.category.LAUNCHER" />
 30-->C:\Users\jesod\Documents\GitHub\Programathon\app\src\main\AndroidManifest.xml:21:17-77
 30-->C:\Users\jesod\Documents\GitHub\Programathon\app\src\main\AndroidManifest.xml:21:27-74
+=======
+8-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="29" />
+9-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:5:5-66
+11-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:5:22-64
+12
+13    <application
+13-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:7:5-24:19
+14        android:allowBackup="true"
+14-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:8:9-35
+15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+15-->[androidx.core:core:1.1.0] C:\Users\Jose\.gradle\caches\transforms-2\files-2.1\7f6c41cc2a14c0fbaa8d0166c17dc544\core-1.1.0\AndroidManifest.xml:24:18-86
+16        android:debuggable="true"
+17        android:icon="@mipmap/ic_launcher"
+17-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:9:9-43
+18        android:label="@string/app_name"
+18-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:10:9-41
+19        android:roundIcon="@mipmap/ic_launcher_round"
+19-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:11:9-54
+20        android:supportsRtl="true"
+20-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:12:9-35
+21        android:testOnly="true"
+22        android:theme="@style/AppTheme" >
+22-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:13:9-40
+23        <activity android:name="com.example.programathon_dehvi.registroEstudiantesActivity" />
+23-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:14:9-74
+23-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:14:19-62
+24        <activity android:name="com.example.programathon_dehvi.updateLocacionActivity" />
+24-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:15:9-60
+24-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:15:19-57
+25        <activity android:name="com.example.programathon_dehvi.registroUsuariosActivity" />
+25-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:16:9-62
+25-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:16:19-59
+26        <activity android:name="com.example.programathon_dehvi.MainActivity" >
+26-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:17:9-23:20
+26-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:17:19-47
+27            <intent-filter>
+27-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:18:13-22:29
+28                <action android:name="android.intent.action.MAIN" />
+28-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:19:17-69
+28-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:19:25-66
+29
+30                <category android:name="android.intent.category.LAUNCHER" />
+30-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:21:17-77
+30-->D:\Documentos\GitRepos\Programathon\app\src\main\AndroidManifest.xml:21:27-74
+>>>>>>> Stashed changes
 31            </intent-filter>
 32        </activity>
 33
 34        <provider
+<<<<<<< Updated upstream
 34-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\jesod\.gradle\caches\transforms-2\files-2.1\7309f8169174f11110ad56440ca8f929\lifecycle-process-2.0.0\AndroidManifest.xml:23:9-27:43
 35            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
 35-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\jesod\.gradle\caches\transforms-2\files-2.1\7309f8169174f11110ad56440ca8f929\lifecycle-process-2.0.0\AndroidManifest.xml:24:13-79
@@ -63,6 +114,17 @@
 37-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\jesod\.gradle\caches\transforms-2\files-2.1\7309f8169174f11110ad56440ca8f929\lifecycle-process-2.0.0\AndroidManifest.xml:26:13-37
 38            android:multiprocess="true" />
 38-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\jesod\.gradle\caches\transforms-2\files-2.1\7309f8169174f11110ad56440ca8f929\lifecycle-process-2.0.0\AndroidManifest.xml:27:13-40
+=======
+34-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Jose\.gradle\caches\transforms-2\files-2.1\7309f8169174f11110ad56440ca8f929\lifecycle-process-2.0.0\AndroidManifest.xml:23:9-27:43
+35            android:name="androidx.lifecycle.ProcessLifecycleOwnerInitializer"
+35-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Jose\.gradle\caches\transforms-2\files-2.1\7309f8169174f11110ad56440ca8f929\lifecycle-process-2.0.0\AndroidManifest.xml:24:13-79
+36            android:authorities="com.example.programathon_dehvi.lifecycle-process"
+36-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Jose\.gradle\caches\transforms-2\files-2.1\7309f8169174f11110ad56440ca8f929\lifecycle-process-2.0.0\AndroidManifest.xml:25:13-69
+37            android:exported="false"
+37-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Jose\.gradle\caches\transforms-2\files-2.1\7309f8169174f11110ad56440ca8f929\lifecycle-process-2.0.0\AndroidManifest.xml:26:13-37
+38            android:multiprocess="true" />
+38-->[androidx.lifecycle:lifecycle-process:2.0.0] C:\Users\Jose\.gradle\caches\transforms-2\files-2.1\7309f8169174f11110ad56440ca8f929\lifecycle-process-2.0.0\AndroidManifest.xml:27:13-40
+>>>>>>> Stashed changes
 39    </application>
 40
 41</manifest>
