@@ -125,13 +125,42 @@ public class RequestManager {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Authorization", "Bearer " + LoginData.accessToken);
+                headers.put("Authorization", LoginData.tokenType + " " + LoginData.accessToken);
                 return headers;
             }
         };
         queue.add(req);
     }
 
+    public void requestGetMyStudents(){
+        String requestString = this.connectionString.concat("/Student/GetMyStudents");
+        RequestQueue queue = Volley.newRequestQueue(current);
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, requestString,
+                null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d("Response", response.toString());
+
+                Toast.makeText(getCurrent(), "" + response.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error", "Error: " + error.getMessage());
+                Toast.makeText(getCurrent(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", LoginData.tokenType + " " + LoginData.accessToken);
+                return headers;
+            }
+        };
+        queue.add(req);
+    }
 
 
 }
