@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
 
     android:theme="@style/Theme.AppCompat.NoActionBar"
-    android:background="@drawable/background_img"
+    android:background="@color/blanco"
     tools:context=".Login">
 
     <LinearLayout
@@ -18,15 +18,14 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_weight="2"
-            android:padding="15dp"
-            android:paddingBottom="95dp">
-
-
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/imageViewLogin"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/logo_dehvi_vertical_color"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="15dp"
+            android:layout_gravity="center"/>
 
 
 
@@ -39,11 +38,11 @@
             android:background="@drawable/input"
             android:hint="@string/prompt_user"
             android:paddingLeft="10dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="30dp"
             android:inputType="number"
             android:maxLength="10"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/negro"
             android:textSize="14dp" />
 
 
@@ -56,20 +55,18 @@
             android:background="@drawable/input"
             android:hint="@string/prompt_password"
             android:inputType="textPassword"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/negro"
             android:layout_marginBottom="30dp"
             android:paddingLeft="10dp"
             android:paddingBottom="3dp"
-            android:maxLength="10"
             android:textSize="14dp" />
-
 
         <Button
             android:id="@+id/BTN_Login_Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:background="@drawable/button"
+            android:background="@drawable/black_button"
             android:gravity="center"
             android:onClick="onClickBtnLogin"
             android:paddingBottom="8dp"
