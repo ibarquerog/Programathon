@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,6 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -132,36 +134,32 @@ public class RequestManager {
         queue.add(req);
     }
 
-    public void requestGetMyStudents(){
+    public void requestGetMyStudents(ProfesorMenuActivity profesorMenuActivityRef){
         String requestString = this.connectionString.concat("/Student/GetMyStudents");
         RequestQueue queue = Volley.newRequestQueue(current);
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, requestString,
-                null, new Response.Listener<JSONObject>() {
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, requestString,
+                null, new Response.Listener<JSONArray>() {
 
             @Override
-            public void onResponse(JSONObject response) {
-                Log.d("Response", response.toString());
-
-                Toast.makeText(getCurrent(), "" + response.toString(), Toast.LENGTH_SHORT).show();
+            public void onResponse(JSONArray response) {
+                profesorMenuActivityRef.onResponseGetMyStudents(response);
+                Log.i("dddddd", response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Error", "Error: " + error.getMessage());
-                Toast.makeText(getCurrent(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
-
+                profesorMenuActivityRef.onResponseGetMyStudents(null);
+                Log.d("dddddd", "Error: " + error.getMessage());
             }
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Authorization", LoginData.tokenType + " " + LoginData.accessToken);
+                headers.put("Authorization", "Bearer " + LoginData.accessToken);
                 return headers;
             }
         };
         queue.add(req);
     }
-
-
 }
 

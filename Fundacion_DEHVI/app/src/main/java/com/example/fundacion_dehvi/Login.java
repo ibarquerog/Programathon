@@ -20,8 +20,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        editTextUser=findViewById(R.id.EditText_Login_User);
-        editTextPass=findViewById(R.id.EditText_Login_Password);
+        editTextUser = findViewById(R.id.EditText_Login_User);
+        editTextPass = findViewById(R.id.EditText_Login_Password);
         this.MyRef = this;
 
         if(!this.isNetworkConnected()){
@@ -55,9 +55,9 @@ public class Login extends AppCompatActivity {
 
         if(validateInputFields()){
             RequestManager rm = new RequestManager(this.getApplicationContext());
-            rm.requestLogin(this.editTextUser.getText().toString(), this.editTextPass.getText().toString(), this.MyRef);
+            //rm.requestLogin(this.editTextUser.getText().toString(), this.editTextPass.getText().toString(), this.MyRef);
             //rm.requestLogin(this.editTextUser.getText().toString(), "Te$t1234", this.MyRef);
-            //rm.requestLogin("1111", "Te$t1234", this.MyRef);
+            rm.requestLogin("1111", "Te$t1234", this.MyRef);
         }
 
     }
@@ -70,7 +70,8 @@ public class Login extends AppCompatActivity {
                 return;
             case "Profesor":
                 Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de profesor", Toast.LENGTH_SHORT).show();
-                break;
+                startActivity(new Intent(Login.this, ProfesorMenuActivity.class));
+                return;
             case "Estudiante":
                 Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Estudiante", Toast.LENGTH_SHORT).show();
                 break;
@@ -81,6 +82,6 @@ public class Login extends AppCompatActivity {
                 Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Super", Toast.LENGTH_SHORT).show();
                 break;
         }
-        startActivity(new Intent(Login.this,MainActivity.class));
+        startActivity(new Intent(Login.this, MainActivity.class));
     }
 }
