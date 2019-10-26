@@ -3,6 +3,7 @@
 3    package="com.example.programathon_dehvi.test" >
 4
 5    <uses-sdk
+<<<<<<< Updated upstream
 5-->C:\Users\jesod\Documents\GitHub\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger820121156057574085.xml:5:5-74
 6        android:minSdkVersion="21"
 6-->C:\Users\jesod\Documents\GitHub\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger820121156057574085.xml:5:15-41
@@ -28,6 +29,33 @@
 17        <uses-library android:name="android.test.runner" />
 17-->C:\Users\jesod\Documents\GitHub\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger820121156057574085.xml:8:9-60
 17-->C:\Users\jesod\Documents\GitHub\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger820121156057574085.xml:8:23-57
+=======
+5-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:5:5-74
+6        android:minSdkVersion="21"
+6-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:5:15-41
+7        android:targetSdkVersion="29" />
+7-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:5:42-71
+8
+9    <instrumentation
+9-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:11:5-15:80
+10        android:name="androidx.test.runner.AndroidJUnitRunner"
+10-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:11:22-76
+11        android:functionalTest="false"
+11-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:14:22-52
+12        android:handleProfiling="false"
+12-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:13:22-53
+13        android:label="Tests for com.example.programathon_dehvi"
+13-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:15:22-78
+14        android:targetPackage="com.example.programathon_dehvi" />
+14-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:12:22-76
+15
+16    <application android:debuggable="true" >
+16-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:7:5-9:19
+16-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:7:18-43
+17        <uses-library android:name="android.test.runner" />
+17-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:8:9-60
+17-->D:\Documentos\GitRepos\Programathon\app\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4875549971142342071.xml:8:23-57
+>>>>>>> Stashed changes
 18    </application>
 19
 20</manifest>

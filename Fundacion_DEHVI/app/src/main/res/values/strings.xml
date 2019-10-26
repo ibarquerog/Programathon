@@ -10,4 +10,58 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="TeacherChildernTittle">"Lista de niños"</string>
+
+    <string name="registrar">Registrar</string>
+    <string name="next">Siguiente</string>
+
+    <string name="uno">1</string>
+    <string name="dos">2</string>
+    <string name="tres">3</string>
+    <string name="cuatro">4</string>
+    <string name="cinco">5</string>
+    <string name="seis">6</string>
+
+    <string name="puntajeTotalLbl">Puntaje total:</string>
+    <string name="estadoLbl">Estado:</string>
+    <string name="cancelarLbl">Cancelar</string>
+
+    <!-- Strings para registro de usuarios /-->
+    <string name="registroUsuariosLabel">Registro de nuevo usuario</string>
+    <string name="email">E-mail</string>
+    <string name="DNI">Numero de identificacion</string>
+    <string name="firstName">Nombre</string>
+    <string name="lastName">Apellido</string>
+    <string name="birthday">Fecha de nacimiento</string>
+    <string name="tel">Telefono</string>
+    <string name="mobile">Celular</string>
+    <string name="gender">Genero</string>
+    <string name="localizacion">ID localizacion</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="password">Clave</string>
+    <string name="superuser">Súper usuario</string>
+    <string name="admin">Administrador</string>
+    <string name="user">Usuario</string>
+
+    <!-- Seccion de strings para registro de estudiantes/!-->
+    <string name="registroEstudiantesLabel">Registro de estudiante</string>
+    <string name="earlyBirthAmount">earlyBirthAmount</string>
+    <string name="sponsorID">ID del patrocinador</string>
+    <string name="classroomID">ID de la clase</string>
+
+    <!-- Strings para registro de usuarios /-->
+    <string name="asq3TestLbl">Test ASQ-3</string>
+    <string name="nombreEstudianteLbl">Estudiante</string>
+    <string name="fechaLbl">Fecha de aplicacion</string>
+    <string name="nombreCuestionarioLbl"> Nombre del cuestionario</string>
+    <string name="comunicacionLbl">Comunicacion</string>
+    <string name="motoraGruesaLbl">Motora gruesa</string>
+    <string name="motoraFinaLbl">Motora fina</string>
+    <string name="resolucionProblemasLbl">Resolucion de problemas</string>
+    <string name="socioindividualLbl">Socio-individual</string>
+    <string name="calificarLbl">Calificar</string>
+
+    <string name="listaEstudiantes">Estudiantes</string>
+
+    <!-- Seccion de consulta de estudiantes x profesores/!-->
+    <string name="verEstudiantesLbl">Ver estudiantes</string>
 </resources>
