@@ -6,4 +6,12 @@ public class Estudiante {
     int earlyBirthAmount;
     int classRoomId;
     Classroom ClassRoom;
+    Form form;
+    int id;
+    int dni;
+    String firstName;
+    String lastName;
+    String gender;
+    int locationId;
+    String status;
 }
