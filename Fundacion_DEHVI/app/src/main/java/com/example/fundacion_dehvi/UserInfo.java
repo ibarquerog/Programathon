@@ -1,4 +1,4 @@
-package com.example.programathon_dehvi;
+package com.example.fundacion_dehvi;
 
 public class UserInfo {
     public static int uid;
