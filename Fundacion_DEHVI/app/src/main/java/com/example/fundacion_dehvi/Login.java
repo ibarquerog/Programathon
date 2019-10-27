@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean validateInputFields(){
-
+        /*
         if(!this.isNetworkConnected()){
             Toast.makeText(this.MyRef.getApplicationContext(), "El dispositivo no tiene conexión a internet", Toast.LENGTH_SHORT).show();
             return false;
@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
        else if(editTextPass.getText().toString().length() <8){
             Toast.makeText(this.MyRef.getApplicationContext(), "Contraseña debe tener mínimo 8 caracteres", Toast.LENGTH_SHORT).show();
             return false;
-        }
+        }*/
         return true;
     }
 
@@ -79,13 +79,13 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(Login.this, ProfesorMenuActivity.class));
                 return;
             case "Estudiante":
-                Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Estudiante", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Estudiante", Toast.LENGTH_SHORT).show();
                 break;
             case "Administrador":
-                Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Administrador", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Administrador", Toast.LENGTH_SHORT).show();
                 break;
             case "Super":
-                Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Super", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Super", Toast.LENGTH_SHORT).show();
                 break;
         }
         startActivity(new Intent(Login.this, MainActivity.class));

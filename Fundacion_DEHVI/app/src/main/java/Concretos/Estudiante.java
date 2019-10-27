@@ -19,10 +19,6 @@ public class Estudiante {
         this.firstName=name;
     }
 
-    public String getNombreCompleto(){
-        return getFirstName() +" "+getLastName();
-    }
-
     public String getFormattedDate() {
         String result = "";
         for(int i=0;i<dob.length();i++){
