@@ -51,6 +51,7 @@ public class ConsultarNinos extends AppCompatActivity {
             Log.i("errorWTF",e.toString());
         }
     }
+
     public void onResponseGetMyStudents(JSONArray students) {//students = null in error case!!!
         this.estudiantesJsonString = students.toString();
 
