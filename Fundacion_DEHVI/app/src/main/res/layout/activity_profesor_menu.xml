@@ -31,7 +31,7 @@
             android:id="@+id/btnPba"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:onClick="onClickEstudiantes"
             android:padding="0dp"
             android:text="prueba" />
 
