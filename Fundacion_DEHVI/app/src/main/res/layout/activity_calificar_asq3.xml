@@ -19,6 +19,7 @@
             android:layout_marginBottom="20dp">
 
             <TextView
+                android:id="@+id/txtPba"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -136,7 +137,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:entries="@array/intChoice"/>
+                    android:entries="@array/intChoice"
+                    android:spinnerMode="dropdown" />
 
                 <Spinner
                     android:id="@+id/sp_2"

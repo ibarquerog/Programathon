@@ -6,26 +6,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class calificarASQ3Activity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class calificarASQ3Activity extends AppCompatActivity{
+    private calificarASQ3Activity myRef;
 
     private Spinner sp1, sp2, sp3, sp4, sp5, sp6;
     private int selectedType;
     private JSONObject evaluation = null;
     private Button btnPrev, btnNext;
 
-
-    public calificarASQ3Activity c;
     public void asd(){
-        Toast.makeText(c, "dddddddddddddddddddddd", Toast.LENGTH_LONG).show();
-        Log.i("dddddd", "aaaaaaaaaaaaaaaaaaaaac");
+        Log.i("dddd", "asdsadaddsa");
     }
 
     @Override
@@ -33,7 +36,8 @@ public class calificarASQ3Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calificar_asq3);
 
-        c = this;
+        //RequestManager requestManager = new RequestManager(this.getApplicationContext());
+        //requestManager.requestGetAreas(this);
 
         sp1 = findViewById(R.id.sp_1);
         sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -47,66 +51,17 @@ public class calificarASQ3Activity extends AppCompatActivity {
                 asd();
             }
         });
+
         sp2 = findViewById(R.id.sp_2);
-        sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                asd();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                asd();
-            }
-        });
         sp3 = findViewById(R.id.sp_3);
-        sp3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                asd();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                asd();
-            }
-        });
         sp4 = findViewById(R.id.sp_4);
-        sp4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                asd();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                asd();
-            }
-        });
         sp5 = findViewById(R.id.sp_5);
-        sp5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                asd();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                asd();
-            }
-        });
         sp6 = findViewById(R.id.sp_6);
-        sp6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                asd();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                asd();
-            }
-        });
 
         this.selectedType = 0;
 
@@ -172,6 +127,9 @@ public class calificarASQ3Activity extends AppCompatActivity {
 
     public void onGetAreasResult(JSONArray areas){
 
+        if(areas == null){
+            return;
+        }
         try {
             JSONObject eval = new JSONObject();
             //eval.put("attendanceId", value)-----------------------
@@ -198,10 +156,13 @@ public class calificarASQ3Activity extends AppCompatActivity {
 
 
             }
-            this.evaluation.put("resultList", resultList);
+            eval.put("resultList", resultList);
+            this.evaluation = eval;
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Toast.makeText(this.getApplicationContext(), evaluation.toString(), Toast.LENGTH_LONG).show();
     }
+
 }
