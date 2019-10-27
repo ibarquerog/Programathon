@@ -165,13 +165,13 @@ public class RequestManager {
 
             @Override
             public void onResponse(JSONArray response) {
-                calificarASQ3Activity.onResponseGetAreas(response);
+                calificarASQ3Activity.onGetAreasResult(response);
                 Log.i("dddddd", response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                calificarASQ3Activity.onResponseGetAreas(null);
+                calificarASQ3Activity.onGetAreasResult(null);
                 Log.d("dddddd", "Error: " + error.getMessage());
             }
         }) {

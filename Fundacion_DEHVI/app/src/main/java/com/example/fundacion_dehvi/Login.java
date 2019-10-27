@@ -19,7 +19,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_calificar_asq3);
         editTextUser = findViewById(R.id.EditText_Login_User);
         editTextPass = findViewById(R.id.EditText_Login_Password);
         this.MyRef = this;
@@ -57,7 +57,7 @@ public class Login extends AppCompatActivity {
             RequestManager rm = new RequestManager(this.getApplicationContext());
             rm.requestLogin(this.editTextUser.getText().toString(), this.editTextPass.getText().toString(), this.MyRef);
             //rm.requestLogin(this.editTextUser.getText().toString(), "Te$t1234", this.MyRef);
-            //rm.requestLogin("1111", "Te$t1234", this.MyRef);
+            rm.requestLogin("1111", "Te$t1234", this.MyRef);
         }
 
     }
