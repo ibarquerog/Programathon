@@ -10,12 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,8 +23,7 @@ import java.util.logging.Logger;
 import Concretos.Estudiante;
 
 public class ConsultarNinos extends AppCompatActivity {
-    private RecyclerView recyclerView;
-    private MyListAdapter adapter;
+
     private ConsultarNinos myRef;
     public ArrayList<Estudiante> listaEstudiantes;
     private String estudiantesJsonString;
@@ -50,7 +47,7 @@ public class ConsultarNinos extends AppCompatActivity {
             recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         }
         catch (Exception e){
-            Log.i("errorWTF",e.toString());
+            Log.i("error",e.toString());
         }
     }
 

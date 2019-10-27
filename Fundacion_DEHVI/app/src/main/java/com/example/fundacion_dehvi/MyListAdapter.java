@@ -9,9 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -104,6 +102,9 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         } else {
             return "";
         }
+
+
+
     }
 
     private long getMonthDifference(Date a, Date b) {
@@ -117,7 +118,6 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         return elapsedMonths;
 
     }
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -155,7 +155,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
-        public LinearLayout relativeLayout;
+        public RelativeLayout relativeLayout;
         public TextView asq3;
         public ImageView line;
 
@@ -167,6 +167,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
             relativeLayout = (LinearLayout) itemView.findViewById(R.id.relativelayout);
         }
 
+        private void calculateASQ3Months(){
 
     }
 }
