@@ -19,10 +19,12 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calificar_asq3);
+        setContentView(R.layout.activity_login);
         editTextUser = findViewById(R.id.EditText_Login_User);
         editTextPass = findViewById(R.id.EditText_Login_Password);
         this.MyRef = this;
+
+        startActivity(new Intent(Login.this, calificarASQ3Activity.class));
 
         if(!this.isNetworkConnected()){
             Toast.makeText(this.MyRef.getApplicationContext(), "El dispositivo no tiene conexión a internet", Toast.LENGTH_SHORT).show();

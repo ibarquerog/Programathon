@@ -15,6 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ProfesorMenuActivity"></activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".calificarASQ3Activity" />
         <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

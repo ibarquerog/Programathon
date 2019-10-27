@@ -36,32 +36,58 @@ public class calificarASQ3Activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calificar_asq3);
 
-        //RequestManager requestManager = new RequestManager(this.getApplicationContext());
-        //requestManager.requestGetAreas(this);
+        RequestManager requestManager = new RequestManager(this.getApplicationContext());
+        requestManager.requestGetAreas(this);
 
         sp1 = findViewById(R.id.sp_1);
         sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                asd();
+                setJsonValue(0, position * 5);
             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                asd();
-            }
+            @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         sp2 = findViewById(R.id.sp_2);
-
+        sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setJsonValue(1, position * 5);
+            }
+            @Override public void onNothingSelected(AdapterView<?> parent) {}
+        });
         sp3 = findViewById(R.id.sp_3);
-
+        sp3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setJsonValue(2, position * 5);
+            }
+            @Override public void onNothingSelected(AdapterView<?> parent) {}
+        });
         sp4 = findViewById(R.id.sp_4);
-
+        sp4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setJsonValue(3, position * 5);
+            }
+            @Override public void onNothingSelected(AdapterView<?> parent) {}
+        });
         sp5 = findViewById(R.id.sp_5);
-
+        sp5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setJsonValue(4, position * 5);
+            }
+            @Override public void onNothingSelected(AdapterView<?> parent) {}
+        });
         sp6 = findViewById(R.id.sp_6);
-
+        sp6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setJsonValue(5, position * 5);
+            }
+            @Override public void onNothingSelected(AdapterView<?> parent) {}
+        });
 
         this.selectedType = 0;
 
@@ -107,6 +133,18 @@ public class calificarASQ3Activity extends AppCompatActivity{
         }
     }
 
+    public void setJsonValue(int spinnerId, int value){
+        JSONArray results = this.getResultsOf(this.selectedType);
+        if(results != null){
+            try {
+                results.getJSONObject(spinnerId).put("value", value);
+                Log.i("ddddd", results.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public JSONArray getResultsOf(int index){
         if(this.evaluation == null){
             return null;
@@ -127,15 +165,15 @@ public class calificarASQ3Activity extends AppCompatActivity{
 
     public void onGetAreasResult(JSONArray areas){
 
-        if(areas == null){
-            return;
-        }
+        //if(areas == null){
+        //    return;
+        //}
         try {
             JSONObject eval = new JSONObject();
             //eval.put("attendanceId", value)-----------------------
             JSONArray resultList = new JSONArray(), results;
             JSONObject result, evaluation;
-            for(int i = 0; i < areas.length(); i++){
+            for(int i = 0; i < 5/*areas.length()*/; i++){
 
                 result = new JSONObject();
                 results = new JSONArray();
