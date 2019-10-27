@@ -242,12 +242,12 @@ public class calificarASQ3Activity extends AppCompatActivity{
                 results = new JSONArray();
 
 
-                    result.put("areaId", Integer.toString(i));
+                    result.put("areaId", i);
 
                     for(int j = 0; j < 6; j++){
                         evaluation = new JSONObject();
-                        evaluation.put("id", Integer.toString(j));
-                        evaluation.put("index", Integer.toString(j));
+                        evaluation.put("id", i);
+                        evaluation.put("index", j);
                         evaluation.put("value", 0);
                         results.put(evaluation);
                     }
