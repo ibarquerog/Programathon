@@ -161,5 +161,130 @@ public class RequestManager {
         };
         queue.add(req);
     }
+
+    public void requestGetAreas(calificarASQ3Activity calificarASQ3Activity){
+        String requestString = this.connectionString.concat("/Areas");
+        RequestQueue queue = Volley.newRequestQueue(current);
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, requestString,
+                null, new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray response) {
+                calificarASQ3Activity.onResponseGetAreas(response);
+                Log.i("dddddd", response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                calificarASQ3Activity.onResponseGetAreas(null);
+                Log.d("dddddd", "Error: " + error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + LoginData.accessToken);
+                return headers;
+            }
+        };
+        queue.add(req);
+    }
+
+    //Cambiar current
+    public void requestGetFormByName(String formName){
+        String requestName = formName.replaceAll(" ", "%20");
+        requestName = "?formHeaderName=" + requestName;
+        Toast.makeText(getCurrent(), requestName, Toast.LENGTH_SHORT).show();
+        String requestString = this.connectionString.concat("/Form/GetByName" + requestName);
+        RequestQueue queue = Volley.newRequestQueue(current);
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, requestString,
+                null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response){
+                //calificarASQ3Activity.onResponseGetAreas(response);
+                try {
+                    requestGetAttendanceByFormId(response);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.i("dddddd", response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //calificarASQ3Activity.onResponseGetAreas(null);
+                Log.d("dddddd", "Error: " + error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + LoginData.accessToken);
+                return headers;
+            }
+        };
+        queue.add(req);
+    }
+
+    public void requestGetAttendanceByFormId(JSONObject form) throws JSONException{
+        String formId = form.getString("id");
+        String requestName = formId.replaceAll(" ", "%20");
+        requestName = "?formId=" + requestName;
+        Toast.makeText(getCurrent(), requestName, Toast.LENGTH_SHORT).show();
+        String requestString = this.connectionString.concat("/Attendance/GetByFormId" + requestName);
+        RequestQueue queue = Volley.newRequestQueue(current);
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, requestString,
+                null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response){
+                //calificarASQ3Activity.onResponseGetAreas(response);
+                Log.i("dddddd", response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //calificarASQ3Activity.onResponseGetAreas(null);
+                Log.d("dddddd", "Error: " + error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + LoginData.accessToken);
+                return headers;
+            }
+        };
+        queue.add(req);
+    }
+
+    public void requestGetAttendanceByStudentId(String studentId) throws JSONException{
+        String requestName = studentId.replaceAll(" ", "%20");
+        requestName = "?studentId=" + requestName;
+        Toast.makeText(getCurrent(), requestName, Toast.LENGTH_SHORT).show();
+        String requestString = this.connectionString.concat("/Attendance/GetByStudentId" + requestName);
+        RequestQueue queue = Volley.newRequestQueue(current);
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, requestString,
+                null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response){
+                //calificarASQ3Activity.onResponseGetAreas(response);
+                Log.i("dddddd", response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //calificarASQ3Activity.onResponseGetAreas(null);
+                Log.d("dddddd", "Error: " + error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Authorization", "Bearer " + LoginData.accessToken);
+                return headers;
+            }
+        };
+        queue.add(req);
+    }
 }
 
