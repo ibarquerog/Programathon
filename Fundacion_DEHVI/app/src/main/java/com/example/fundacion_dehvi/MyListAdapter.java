@@ -1,6 +1,9 @@
 package com.example.fundacion_dehvi;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +23,14 @@ import Concretos.Estudiante;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
     private ArrayList<Estudiante> listdata;
+    private Context current;
 
     // RecyclerView recyclerView;
-    public MyListAdapter(ArrayList<Estudiante> listdata) {
+    public MyListAdapter(ArrayList<Estudiante> listdata, Context current) {
+        this.current = current;
         this.listdata = listdata;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -40,11 +46,12 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"click on item: "+estudiante.getFirstName(),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(current, calificarASQ3Activity.class);
+                intent.putExtra("ID", Integer.toString(estudiante.getId()));
+                current.startActivity(intent);
             }
         });
     }
-
 
     @Override
     public int getItemCount() {

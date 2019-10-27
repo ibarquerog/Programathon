@@ -2,6 +2,7 @@ package com.example.fundacion_dehvi;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,8 +17,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+
+import Concretos.Estudiante;
 
 public class calificarASQ3Activity extends AppCompatActivity{
     private calificarASQ3Activity myRef;
@@ -25,17 +29,22 @@ public class calificarASQ3Activity extends AppCompatActivity{
     private Spinner sp1, sp2, sp3, sp4, sp5, sp6;
     private int selectedType;
     private JSONObject evaluation = null;
-    private Button btnPrev, btnNext;
-
-    public void asd(){
-        Log.i("dddd", "asdsadaddsa");
-    }
+    private Button btnPrev, btnNext, btnPlan;
+    private ArrayList<String> areaNames;
+    private TextView textViewAreaName, txtViewEstado;
+    private String studentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calificar_asq3);
+        areaNames = new ArrayList();
+        textViewAreaName = findViewById(R.id.lbl_tipoArea);
+        txtViewEstado = findViewById(R.id.txtViewEstado);
 
+        this.selectedType = 0;
+
+        studentId = getIntent().getStringExtra("ID");
         RequestManager requestManager = new RequestManager(this.getApplicationContext());
         requestManager.requestGetAreas(this);
 
@@ -44,6 +53,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(0, position * 5);
+                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -53,6 +63,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(1, position * 5);
+                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -61,6 +72,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(2, position * 5);
+                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -69,6 +81,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(3, position * 5);
+                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -77,6 +90,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(4, position * 5);
+                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -85,11 +99,10 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(5, position * 5);
+                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
-
-        this.selectedType = 0;
 
         btnPrev = findViewById(R.id.PrevBtn);
         btnPrev.setOnClickListener(new Button.OnClickListener() {
@@ -112,6 +125,14 @@ public class calificarASQ3Activity extends AppCompatActivity{
                 }
             }
         });
+
+        btnPlan = findViewById(R.id.btnCrearPlan);
+        btnPlan.setVisibility(View.INVISIBLE);
+        btnPlan.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     }
 
     public void setIndexValues(int index){
@@ -120,16 +141,117 @@ public class calificarASQ3Activity extends AppCompatActivity{
             return;
         }
         else{
+            this.textViewAreaName.setText(this.areaNames.get(index));
+
             try {
-                sp1.setSelection(results.getJSONObject(index).getInt("value") / 5);
-                sp2.setSelection(results.getJSONObject(index).getInt("value") / 5);
-                sp3.setSelection(results.getJSONObject(index).getInt("value") / 5);
-                sp4.setSelection(results.getJSONObject(index).getInt("value") / 5);
-                sp5.setSelection(results.getJSONObject(index).getInt("value") / 5);
-                sp6.setSelection(results.getJSONObject(index).getInt("value") / 5);
+                sp1.setSelection(results.getJSONObject(0).getInt("value") / 5);
+                sp2.setSelection(results.getJSONObject(1).getInt("value") / 5);
+                sp3.setSelection(results.getJSONObject(2).getInt("value") / 5);
+                sp4.setSelection(results.getJSONObject(3).getInt("value") / 5);
+                sp5.setSelection(results.getJSONObject(4).getInt("value") / 5);
+                sp6.setSelection(results.getJSONObject(5).getInt("value") / 5);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public int getStatus(int index){
+        JSONArray results = this.getResultsOf(index);
+        if(results == null){
+            return -1;
+        }
+        else{
+
+            try {
+
+                int sum = 0;
+                sum += results.getJSONObject(0).getInt("value");
+                sum += results.getJSONObject(1).getInt("value");
+                sum += results.getJSONObject(2).getInt("value");
+                sum += results.getJSONObject(3).getInt("value");
+                sum += results.getJSONObject(4).getInt("value");
+                sum += results.getJSONObject(5).getInt("value");
+
+                return sum;
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return -1;
+            }
+        }
+    }
+
+    public void getColorStatus(int index){
+
+        int sumResult = this.getStatus(index);
+        if(sumResult == -1){
+            return;
+        }
+        else{
+            Log.d("ddddddd", sumResult + "   : " + selectedType);
+            this.txtViewEstado.setText(Integer.toString(sumResult));
+            if(this.selectedType == 0 && sumResult >= 0 && sumResult < 35){
+                this.txtViewEstado.setBackgroundColor(Color.RED);
+                btnPlan.setVisibility(View.VISIBLE);
+            }
+            else if(this.selectedType == 0 && sumResult >= 35 && sumResult < 45){
+                this.txtViewEstado.setBackgroundColor(Color.YELLOW);
+                btnPlan.setVisibility(View.VISIBLE);
+            }
+            else if(this.selectedType == 0 && sumResult >= 45 && sumResult <= 60){
+                this.txtViewEstado.setBackgroundColor(Color.GREEN);
+                btnPlan.setVisibility(View.INVISIBLE);
+            }
+            else if(this.selectedType == 1 && sumResult >= 0 && sumResult < 35){
+                this.txtViewEstado.setBackgroundColor(Color.RED);
+                btnPlan.setVisibility(View.VISIBLE);
+            }
+            else if(this.selectedType == 1 && sumResult >= 35 && sumResult < 45){
+                this.txtViewEstado.setBackgroundColor(Color.YELLOW);
+                btnPlan.setVisibility(View.VISIBLE);
+            }
+            else if(this.selectedType == 1 && sumResult >= 45 && sumResult <= 60){
+                this.txtViewEstado.setBackgroundColor(Color.GREEN);
+                btnPlan.setVisibility(View.INVISIBLE);
+            }
+            else if(this.selectedType == 2 && sumResult >= 0 && sumResult < 20){
+                this.txtViewEstado.setBackgroundColor(Color.RED);
+                btnPlan.setVisibility(View.VISIBLE);
+            }
+            else if(this.selectedType == 2 && sumResult >= 20 && sumResult < 35){
+                this.txtViewEstado.setBackgroundColor(Color.YELLOW);
+                btnPlan.setVisibility(View.VISIBLE);
+            }
+            else if(this.selectedType == 2 && sumResult >= 35 && sumResult <= 60){
+                this.txtViewEstado.setBackgroundColor(Color.GREEN);
+                btnPlan.setVisibility(View.INVISIBLE);
+            }
+            else if(this.selectedType == 3 && sumResult >= 0 && sumResult < 35){
+                this.txtViewEstado.setBackgroundColor(Color.RED);
+                btnPlan.setVisibility(View.VISIBLE);
+            }
+            else if(this.selectedType == 3 && sumResult >= 35 && sumResult < 45){
+                this.txtViewEstado.setBackgroundColor(Color.YELLOW);
+                btnPlan.setVisibility(View.VISIBLE);
+            }
+            else if(this.selectedType == 3 && sumResult >= 45 && sumResult <= 60){
+                this.txtViewEstado.setBackgroundColor(Color.GREEN);
+                btnPlan.setVisibility(View.INVISIBLE);
+            }
+            else if(this.selectedType == 4 && sumResult >= 0 && sumResult < 30){
+                this.txtViewEstado.setBackgroundColor(Color.RED);
+                btnPlan.setVisibility(View.VISIBLE);
+            }
+            else if(this.selectedType == 4 && sumResult >= 30 && sumResult < 40){
+                this.txtViewEstado.setBackgroundColor(Color.YELLOW);
+                btnPlan.setVisibility(View.VISIBLE);
+            }
+            else if(this.selectedType == 4 && sumResult >= 40 && sumResult <= 60){
+                this.txtViewEstado.setBackgroundColor(Color.GREEN);
+                btnPlan.setVisibility(View.INVISIBLE);
+            }
+
         }
     }
 
@@ -138,7 +260,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
         if(results != null){
             try {
                 results.getJSONObject(spinnerId).put("value", value);
-                Log.i("ddddd", results.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -146,6 +267,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
     }
 
     public JSONArray getResultsOf(int index){
+
         if(this.evaluation == null){
             return null;
         }
@@ -154,7 +276,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
                 return this.evaluation.getJSONArray("resultList").
                                                             getJSONObject(index).
                                                                 getJSONArray("results");
-
             } catch (JSONException e) {
                 e.printStackTrace();
                 return null;
@@ -162,18 +283,20 @@ public class calificarASQ3Activity extends AppCompatActivity{
         }
     }
 
-
     public void onGetAreasResult(JSONArray areas){
 
-        //if(areas == null){
-        //    return;
-        //}
+        if(areas == null){
+            Log.d("dddd", "no se encontraron areas");
+            return;
+        }
         try {
             JSONObject eval = new JSONObject();
             //eval.put("attendanceId", value)-----------------------
             JSONArray resultList = new JSONArray(), results;
             JSONObject result, evaluation;
-            for(int i = 0; i < 5/*areas.length()*/; i++){
+            for(int i = 0; i < areas.length(); i++){
+
+                areaNames.add(areas.getJSONObject(i).getString("name"));
 
                 result = new JSONObject();
                 results = new JSONArray();
@@ -195,12 +318,11 @@ public class calificarASQ3Activity extends AppCompatActivity{
 
             }
             eval.put("resultList", resultList);
+            this.evaluation = new JSONObject();
             this.evaluation = eval;
-
+            Log.d("evaluaciones", this.evaluation.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Toast.makeText(this.getApplicationContext(), evaluation.toString(), Toast.LENGTH_LONG).show();
     }
-
 }
