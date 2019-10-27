@@ -251,24 +251,24 @@ public class RequestManager {
         queue.add(req);
     }
 
-    public void requestGetAttendanceByStudentId(String studentId) throws JSONException{
+    public void requestGetAttendanceByStudentId(String studentId, calificarASQ3Activity ref){
         String requestName = studentId.replaceAll(" ", "%20");
         requestName = "?studentId=" + requestName;
-        Toast.makeText(getCurrent(), requestName, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getCurrent(), requestName, Toast.LENGTH_SHORT).show();
         String requestString = this.connectionString.concat("/Attendance/GetByStudentId" + requestName);
         RequestQueue queue = Volley.newRequestQueue(current);
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, requestString,
                 null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response){
-                //calificarASQ3Activity.onResponseGetAreas(response);
-                Log.i("dddddd", response.toString());
+                ref.onGetAreasResult(response);
+                //Log.i("dddddd", response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //calificarASQ3Activity.onResponseGetAreas(null);
-                Log.d("dddddd", "Error: " + error.getMessage());
+                ref.onGetAreasResult(null);
+                //Log.d("dddddd", "Error: " + error.getMessage());
             }
         }) {
             @Override

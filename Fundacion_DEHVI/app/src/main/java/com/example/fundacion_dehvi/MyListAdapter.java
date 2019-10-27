@@ -1,6 +1,9 @@
 package com.example.fundacion_dehvi;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.os.Build;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -31,12 +34,18 @@ import Concretos.Estudiante;
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
     private ArrayList<Estudiante> listdata;
-    private ArrayList<String> aq3=new ArrayList<String>();
+    private Context current;
+    private ArrayList<String> aq3 = new ArrayList<String>();
+
+    // RecyclerView recyclerView;
+    public MyListAdapter(ArrayList<Estudiante> listdata, Context current) {
+        this.current = current;
+    }
 
     // RecyclerView recyclerView;
     public MyListAdapter(ArrayList<Estudiante> listdata) throws ParseException {
         this.listdata = listdata;
-        calculateMonths();
+        //calculateMonths();
     }
     private void calculateMonths() throws ParseException {
         for(Estudiante es:listdata) {
@@ -91,6 +100,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         return elapsedMonths;
 
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -107,7 +117,9 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(),"click on item: "+estudiante.getFirstName(),Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(current, calificarASQ3Activity.class);
+                intent.putExtra("ID", Integer.toString(estudiante.getId()));
+                current.startActivity(intent);
             }
         });
     }
@@ -127,10 +139,6 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
             asq3.setGravity(Gravity.RIGHT);
             this.textView = (TextView) itemView.findViewById(R.id.recycler_view_item_full_name);
             relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativelayout);
-        }
-
-        private void calculateASQ3Months(){
-
         }
     }
 }  

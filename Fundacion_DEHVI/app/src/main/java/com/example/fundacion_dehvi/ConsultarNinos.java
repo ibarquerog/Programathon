@@ -43,7 +43,7 @@ public class ConsultarNinos extends AppCompatActivity {
         try{
 
             RecyclerView recyclerView = findViewById(R.id.recyclerViewConsultarNinos);
-            MyListAdapter adapter = new MyListAdapter(estudiantes);
+            MyListAdapter adapter = new MyListAdapter(estudiantes, this.getApplicationContext());
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         }
@@ -53,14 +53,13 @@ public class ConsultarNinos extends AppCompatActivity {
     }
 
     public void onResponseGetMyStudents(JSONArray students) {//students = null in error case!!!
-        this.estudiantesJsonString = students.toString();
 
-        Gson gson = new Gson();
-        Estudiante[] estudianteArray = gson.fromJson(estudiantesJsonString, Estudiante[].class);
-        listaEstudiantes = new ArrayList<>(Arrays.asList(estudianteArray));
-        for(Estudiante estudiante: listaEstudiantes){
-            Log.d("dddd", estudiante.getFirstName());
+        if(students != null){
+            this.estudiantesJsonString = students.toString();
+            Gson gson = new Gson();
+            Estudiante[] estudianteArray = gson.fromJson(estudiantesJsonString, Estudiante[].class);
+            listaEstudiantes = new ArrayList<>(Arrays.asList(estudianteArray));
+            this.setupRecyclerView(listaEstudiantes);
         }
-        this.setupRecyclerView(listaEstudiantes);
     }
 }
