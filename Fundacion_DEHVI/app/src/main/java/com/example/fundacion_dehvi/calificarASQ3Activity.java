@@ -29,7 +29,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
     private Spinner sp1, sp2, sp3, sp4, sp5, sp6;
     private int selectedType;
     private JSONObject evaluation = null;
-    private Button btnPrev, btnNext, btnPlan;
+    private Button btnPrev, btnNext, btnPlan, btnCalificar, btnCancelar;
     private ArrayList<String> areaNames;
     private TextView textViewAreaName, txtViewEstado;
     private String studentId;
@@ -43,6 +43,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
         txtViewEstado = findViewById(R.id.txtViewEstado);
 
         this.selectedType = 0;
+        this.myRef = this;
 
         studentId = getIntent().getStringExtra("ID");
         RequestManager requestManager = new RequestManager(this.getApplicationContext());
@@ -122,6 +123,17 @@ public class calificarASQ3Activity extends AppCompatActivity{
                 if(selectedType < 6){
                     selectedType++;
                     setIndexValues(selectedType);
+                }
+            }
+        });
+
+        btnCalificar = findViewById(R.id.registrarBtn);
+        btnCalificar.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(evaluation != null){
+                    RequestManager requestManager = new RequestManager(myRef.getApplicationContext());
+                    requestManager.requestAddResults(evaluation, myRef);
                 }
             }
         });
@@ -323,6 +335,15 @@ public class calificarASQ3Activity extends AppCompatActivity{
             Log.d("evaluaciones", this.evaluation.toString());
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void onAddResultsResult(boolean result) {
+        if(result ){
+            Toast.makeText(this.getApplicationContext(), "Se a guardado la evaluacion", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this.getApplicationContext(), "Ha ocurrido un error al realizar la evaluacion", Toast.LENGTH_SHORT).show();
         }
     }
 }

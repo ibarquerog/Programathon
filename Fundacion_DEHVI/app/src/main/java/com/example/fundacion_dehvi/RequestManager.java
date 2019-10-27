@@ -281,7 +281,7 @@ public class RequestManager {
         queue.add(req);
     }
 
-    public void requestAddResults(JSONObject json){
+    public void requestAddResults(JSONObject json, calificarASQ3Activity ref){
         String requestString = this.connectionString.concat("/Result/AddResults");
         RequestQueue queue = Volley.newRequestQueue(current);
 
@@ -290,6 +290,7 @@ public class RequestManager {
 
             @Override
             public void onResponse(JSONObject response) {
+                ref.onAddResultsResult(true);
                 Log.d("Response", response.toString());
 
                 Toast.makeText(getCurrent(), "" + response.toString(), Toast.LENGTH_SHORT).show();
@@ -299,7 +300,7 @@ public class RequestManager {
             public void onErrorResponse(VolleyError error) {
                 Log.d("Error", "Error: " + error.getMessage());
                 Toast.makeText(getCurrent(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
-
+                ref.onAddResultsResult(false);
             }
         }) {
             @Override
