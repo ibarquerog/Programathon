@@ -9,7 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="15dp"
-        android:gravity="center"
         android:orientation="vertical">
 
         <Toolbar
@@ -17,17 +16,16 @@
             android:layout_height="match_parent"
             android:background="@color/celeste">
 
-       <Button
-           android:layout_width="25dp"
-           android:layout_height="25dp"
-           android:background="@drawable/logou"
-           android:onClick="onClickLogout"
-           android:gravity="end">
+            <Button
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/logou"
+                android:onClick="onClickLogout"
+                android:gravity="end">
 
-       </Button>
+            </Button>
 
         </Toolbar>
-
 
         <TextView
             android:layout_width="match_parent"
@@ -38,32 +36,10 @@
             android:paddingBottom="30dp"
             android:layout_gravity="center"
             android:textAlignment="center"
-            android:text="@string/profesorLbl"
+            android:text="@string/coordinadorGenLbl"
             android:textAppearance="@android:style/TextAppearance.Material.Headline"
             android:textStyle="bold" />
 
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="@string/misEstudiantesLbl"
-            android:layout_marginTop="30dp"
-            android:onClick="onClickEstudiantes"
-            />
-
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="@string/crearPlanLbl"
-            android:layout_marginTop="30dp"
-            />
-
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="@string/verResultadosLbl"
-            android:layout_marginTop="30dp"
-            android:onClick="onClickElegirEstudiante"
-            />
 
     </LinearLayout>
 </ScrollView>

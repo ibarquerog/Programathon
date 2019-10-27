@@ -157,6 +157,34 @@ public class RequestManager {
         queue.add(req);
     }
 
+    public void requestGetMyStudents(ElegirEstudiante consultarNinosActivity){//https://stackoverflow.com/questions/44000212/how-to-send-authorization-header-in-android-using-volley-library
+        String requestString = this.connectionString.concat("/Student/GetMyStudents");
+        RequestQueue queue = Volley.newRequestQueue(current);
+        JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, requestString,
+                null, new Response.Listener<JSONArray>() {
+
+            @Override
+            public void onResponse(JSONArray response) {
+                consultarNinosActivity.onResponseGetMyStudents(response);
+                Log.i("dddddd", response.toString());
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                consultarNinosActivity.onResponseGetMyStudents(null);
+                Log.d("dddddd", "Error: " + error.getMessage());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Authorization", "Bearer " + LoginData.accessToken);
+                return headers;
+            }
+        };
+        queue.add(req);
+    }
+
     public void requestGetAreas(calificarASQ3Activity calificarASQ3Activity){
         String requestString = this.connectionString.concat("/Areas");
         RequestQueue queue = Volley.newRequestQueue(current);
@@ -252,7 +280,7 @@ public class RequestManager {
         queue.add(req);
     }
 
-    public void requestGetAttendanceByStudentId(String studentId, calificarASQ3Activity ref){
+    public void requestGetAttendanceByStudentId(String studentId) throws JSONException{
         String requestName = studentId.replaceAll(" ", "%20");
         requestName = "?studentId=" + requestName;
         Toast.makeText(getCurrent(), requestName, Toast.LENGTH_SHORT).show();
@@ -262,14 +290,14 @@ public class RequestManager {
                 null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response){
-                ref.onGetAreasResult(response);
-                //Log.i("dddddd", response.toString());
+                //calificarASQ3Activity.onResponseGetAreas(response);
+                Log.i("dddddd", response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                ref.onGetAreasResult(null);
-                //Log.d("dddddd", "Error: " + error.getMessage());
+                //calificarASQ3Activity.onResponseGetAreas(null);
+                Log.d("dddddd", "Error: " + error.getMessage());
             }
         }) {
             @Override

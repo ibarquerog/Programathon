@@ -42,9 +42,9 @@ public class calificarASQ3Activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calificar_asq3);
         areaNames = new ArrayList();
-        textViewAreaName = findViewById(R.id.lbl_tipoArea);
+        textViewAreaName = findViewById(R.id.lbl_tipoCuestionario);
         txtViewEstado = findViewById(R.id.txtViewEstado);
-        textFecha=findViewById(R.id.lbl_Fecha);
+        textFecha=findViewById(R.id.lbl_fecha);
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String today = formatter.format(date);
@@ -61,7 +61,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(0, position * 5);
-                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -71,7 +70,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(1, position * 5);
-                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -80,7 +78,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(2, position * 5);
-                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -89,7 +86,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(3, position * 5);
-                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -98,7 +94,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(4, position * 5);
-                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -107,7 +102,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 setJsonValue(5, position * 5);
-                getColorStatus(selectedType);
             }
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
@@ -200,12 +194,12 @@ public class calificarASQ3Activity extends AppCompatActivity{
         else{
             this.textViewAreaName.setText(this.areaNames.get(index));
             try {
-                sp1.setSelection(results.getJSONObject(0).getInt("value") / 5);
-                sp2.setSelection(results.getJSONObject(1).getInt("value") / 5);
-                sp3.setSelection(results.getJSONObject(2).getInt("value") / 5);
-                sp4.setSelection(results.getJSONObject(3).getInt("value") / 5);
-                sp5.setSelection(results.getJSONObject(4).getInt("value") / 5);
-                sp6.setSelection(results.getJSONObject(5).getInt("value") / 5);
+                sp1.setSelection(results.getJSONObject(index).getInt("value") / 5);
+                sp2.setSelection(results.getJSONObject(index).getInt("value") / 5);
+                sp3.setSelection(results.getJSONObject(index).getInt("value") / 5);
+                sp4.setSelection(results.getJSONObject(index).getInt("value") / 5);
+                sp5.setSelection(results.getJSONObject(index).getInt("value") / 5);
+                sp6.setSelection(results.getJSONObject(index).getInt("value") / 5);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

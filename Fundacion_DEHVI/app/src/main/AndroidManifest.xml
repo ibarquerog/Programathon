@@ -14,6 +14,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".CicloDesarrolloIntegral"></activity>
+        <activity android:name=".ElegirEstudiante"></activity>
+        <activity android:name=".MostrarListaCuestionariosActivity" />
+        <activity android:name=".CrearPlanActivity" />
+        <activity android:name=".SuperUsuarioMenuActivity" />
+        <activity android:name=".AdministradorMenuActivity" />
         <activity
             android:name=".ConsultarNinos"
             android:label="@string/title_activity_consultar_ninos"

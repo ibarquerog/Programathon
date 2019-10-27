@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -104,6 +103,8 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         } else {
             return "";
         }
+
+
     }
 
     private long getMonthDifference(Date a, Date b) {
@@ -141,8 +142,8 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 datos.add(Integer.toString(listdata.get(position).getEarlyBirthAmount()));
                 datos.add(listdata.get(position).getGender());
                 datos.add(listdata.get(position).getJoinDate());
-                Intent intent=new Intent(contex,CicloDesarrolloIntegral.class);
-                intent.putExtra("ESTUDIANTE",datos);
+                Intent intent = new Intent(contex, CicloDesarrolloIntegral.class);
+                intent.putExtra("ESTUDIANTE", datos);
                 contex.startActivity(intent);
             }
         });
@@ -167,6 +168,8 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
             relativeLayout = (LinearLayout) itemView.findViewById(R.id.relativelayout);
         }
 
+        private void calculateASQ3Months() {
 
+        }
     }
 }
