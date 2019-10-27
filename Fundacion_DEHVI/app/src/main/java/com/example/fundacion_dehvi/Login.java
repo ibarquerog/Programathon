@@ -24,7 +24,6 @@ public class Login extends AppCompatActivity {
         editTextPass = findViewById(R.id.EditText_Login_Password);
         this.MyRef = this;
 
-
         if(!this.isNetworkConnected()){
             Toast.makeText(this.MyRef.getApplicationContext(), "El dispositivo no tiene conexión a internet", Toast.LENGTH_SHORT).show();
         }
@@ -41,7 +40,7 @@ public class Login extends AppCompatActivity {
     }
 
     private boolean validateInputFields(){
-
+        /*
         if(!this.isNetworkConnected()){
             Toast.makeText(this.MyRef.getApplicationContext(), "El dispositivo no tiene conexión a internet", Toast.LENGTH_SHORT).show();
             return false;
@@ -53,7 +52,7 @@ public class Login extends AppCompatActivity {
        else if(editTextPass.getText().toString().length() <8){
             Toast.makeText(this.MyRef.getApplicationContext(), "Contraseña debe tener mínimo 8 caracteres", Toast.LENGTH_SHORT).show();
             return false;
-        }
+        }*/
         return true;
     }
 
