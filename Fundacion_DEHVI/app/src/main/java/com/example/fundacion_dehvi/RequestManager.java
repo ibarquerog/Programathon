@@ -129,7 +129,7 @@ public class RequestManager {
         queue.add(req);
     }
 
-    public void requestGetMyStudents(ProfesorMenuActivity profesorMenuActivityRef){//https://stackoverflow.com/questions/44000212/how-to-send-authorization-header-in-android-using-volley-library
+    public void requestGetMyStudents(ConsultarNinos consultarNinosActivity){//https://stackoverflow.com/questions/44000212/how-to-send-authorization-header-in-android-using-volley-library
         String requestString = this.connectionString.concat("/Student/GetMyStudents");
         RequestQueue queue = Volley.newRequestQueue(current);
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, requestString,
@@ -137,13 +137,13 @@ public class RequestManager {
 
             @Override
             public void onResponse(JSONArray response) {
-                profesorMenuActivityRef.onResponseGetMyStudents(response);
+                consultarNinosActivity.onResponseGetMyStudents(response);
                 Log.i("dddddd", response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                profesorMenuActivityRef.onResponseGetMyStudents(null);
+                consultarNinosActivity.onResponseGetMyStudents(null);
                 Log.d("dddddd", "Error: " + error.getMessage());
             }
         }) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/relativelayout">
+
+    <TextView
+        android:id="@+id/recycler_view_item_full_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sampleText"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="@dimen/text_margin"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginRight="@dimen/text_margin"
+        android:layout_marginBottom="@dimen/text_margin"
+        android:textSize="24sp" />
+
+</RelativeLayout>

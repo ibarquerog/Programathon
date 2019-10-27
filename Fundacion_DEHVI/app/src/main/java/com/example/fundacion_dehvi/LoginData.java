@@ -7,4 +7,12 @@ public class LoginData {
     public static String tokenType = "";
     public static  String scope = "";
 
+    static void clearData(){
+        accessToken="";
+        refreshToken = "";
+        expiresIn = 0;
+        tokenType = "";
+        scope = "";
+    }
+
 }
