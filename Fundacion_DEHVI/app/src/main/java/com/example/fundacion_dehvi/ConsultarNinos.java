@@ -45,7 +45,7 @@ public class ConsultarNinos extends AppCompatActivity {
         try{
 
             RecyclerView recyclerView = findViewById(R.id.recyclerViewConsultarNinos);
-            MyListAdapter adapter = new MyListAdapter(estudiantes, this.getApplicationContext());
+            MyListAdapter adapter = new MyListAdapter(estudiantes);
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this.getApplicationContext()));
         }
@@ -55,17 +55,11 @@ public class ConsultarNinos extends AppCompatActivity {
     }
 
     public void onResponseGetMyStudents(JSONArray students) {//students = null in error case!!!
-<<<<<<< HEAD
         try {
-=======
-
-        if(students != null){
->>>>>>> 8910d570772a95866ff55f8903ec5037b419d615
             this.estudiantesJsonString = students.toString();
             Gson gson = new Gson();
             Estudiante[] estudianteArray = gson.fromJson(estudiantesJsonString, Estudiante[].class);
             listaEstudiantes = new ArrayList<>(Arrays.asList(estudianteArray));
-<<<<<<< HEAD
             for(Estudiante estudiante: listaEstudiantes){
                 Log.d("dddd", estudiante.getFirstName());
             }
@@ -76,9 +70,5 @@ public class ConsultarNinos extends AppCompatActivity {
         }
 
 
-=======
-            this.setupRecyclerView(listaEstudiantes);
-        }
->>>>>>> 8910d570772a95866ff55f8903ec5037b419d615
     }
 }
