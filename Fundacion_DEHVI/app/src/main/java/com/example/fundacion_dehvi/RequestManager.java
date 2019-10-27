@@ -99,12 +99,7 @@ public class RequestManager {
         this.current = current;
     }
 
-    //public void pba(String access_token, String dni){
-
-            //String requestString = this.connectionString.concat("/Teacher/GetByDNI").concat("?dni=").concat(dni);
-
-
-    public void requestGetTeacherByDNI(){
+    public void requestGetTeacherByDNI(){//https://stackoverflow.com/questions/44000212/how-to-send-authorization-header-in-android-using-volley-library
         String requestString = this.connectionString.concat("/Teacher/GetByDNI");
         RequestQueue queue = Volley.newRequestQueue(current);
         JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, requestString,
@@ -134,7 +129,7 @@ public class RequestManager {
         queue.add(req);
     }
 
-    public void requestGetMyStudents(ProfesorMenuActivity profesorMenuActivityRef){
+    public void requestGetMyStudents(ProfesorMenuActivity profesorMenuActivityRef){//https://stackoverflow.com/questions/44000212/how-to-send-authorization-header-in-android-using-volley-library
         String requestString = this.connectionString.concat("/Student/GetMyStudents");
         RequestQueue queue = Volley.newRequestQueue(current);
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, requestString,

@@ -55,9 +55,9 @@ public class Login extends AppCompatActivity {
 
         if(validateInputFields()){
             RequestManager rm = new RequestManager(this.getApplicationContext());
-            //rm.requestLogin(this.editTextUser.getText().toString(), this.editTextPass.getText().toString(), this.MyRef);
+            rm.requestLogin(this.editTextUser.getText().toString(), this.editTextPass.getText().toString(), this.MyRef);
             //rm.requestLogin(this.editTextUser.getText().toString(), "Te$t1234", this.MyRef);
-            rm.requestLogin("1111", "Te$t1234", this.MyRef);
+            //rm.requestLogin("1111", "Te$t1234", this.MyRef);
         }
 
     }
