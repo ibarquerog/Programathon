@@ -11,4 +11,8 @@ public class ConsultarNinosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultar_ninos);
     }
+
+    public void getNinos(){
+
+    }
 }
