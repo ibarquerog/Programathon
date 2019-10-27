@@ -13,7 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProfesorMenuActivity"></activity>
+        <activity
+            android:name=".ConsultarNinos"
+            android:label="@string/title_activity_consultar_ninos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ProfesorMenuActivity" />
+        <activity android:name=".ConsultarNinosActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Login">
             <intent-filter>
