@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,14 +55,20 @@ public class ConsultarNinos extends AppCompatActivity {
     }
 
     public void onResponseGetMyStudents(JSONArray students) {//students = null in error case!!!
-        this.estudiantesJsonString = students.toString();
-
-        Gson gson = new Gson();
-        Estudiante[] estudianteArray = gson.fromJson(estudiantesJsonString, Estudiante[].class);
-        listaEstudiantes = new ArrayList<>(Arrays.asList(estudianteArray));
-        for(Estudiante estudiante: listaEstudiantes){
-            Log.d("dddd", estudiante.getFirstName());
+        try {
+            this.estudiantesJsonString = students.toString();
+            Gson gson = new Gson();
+            Estudiante[] estudianteArray = gson.fromJson(estudiantesJsonString, Estudiante[].class);
+            listaEstudiantes = new ArrayList<>(Arrays.asList(estudianteArray));
+            for(Estudiante estudiante: listaEstudiantes){
+                Log.d("dddd", estudiante.getFirstName());
+            }
+            this.setupRecyclerView(listaEstudiantes);
         }
-        this.setupRecyclerView(listaEstudiantes);
+        catch (Exception e){
+            Toast.makeText(this, "Usted no tiene estudiantes asignados", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 }

@@ -62,8 +62,8 @@ public class Login extends AppCompatActivity {
         if(validateInputFields()){
             RequestManager rm = new RequestManager(this.getApplicationContext());
             rm.requestLogin(this.editTextUser.getText().toString(), this.editTextPass.getText().toString(), this.MyRef);
-            //rm.requestLogin(this.editTextUser.getText().toString(), "Te$t1234", this.MyRef);
-            rm.requestLogin("1111", "Te$t1234", this.MyRef);
+           rm.requestLogin(this.editTextUser.getText().toString(), editTextPass.getText().toString(), this.MyRef);
+            //rm.requestLogin("1111", "Te$t1234", this.MyRef);
         }
 
     }
@@ -79,13 +79,13 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(Login.this, ProfesorMenuActivity.class));
                 return;
             case "Estudiante":
-                Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Estudiante", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Estudiante", Toast.LENGTH_SHORT).show();
                 break;
             case "Administrador":
-                Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Administrador", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Administrador", Toast.LENGTH_SHORT).show();
                 break;
             case "Super":
-                Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Super", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this.MyRef.getApplicationContext(), "Usuario de Super", Toast.LENGTH_SHORT).show();
                 break;
         }
         startActivity(new Intent(Login.this, MainActivity.class));

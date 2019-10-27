@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,9 +77,6 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         else {
             return "";
         }
-
-
-
     }
 
     private long getMonthDifference(Date a, Date b){
@@ -119,18 +118,16 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
-        public RelativeLayout relativeLayout;
+        public LinearLayout relativeLayout;
         public TextView asq3;
+        public ImageView line;
         public ViewHolder(View itemView) {
             super(itemView);
             this.asq3=(TextView) itemView.findViewById(R.id.recycler_view_item_ASQ3);
-            asq3.setGravity(Gravity.RIGHT);
             this.textView = (TextView) itemView.findViewById(R.id.recycler_view_item_full_name);
-            relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativelayout);
+            this.line=(ImageView) itemView.findViewById(R.id.line);
+            relativeLayout = (LinearLayout) itemView.findViewById(R.id.relativelayout);
         }
 
-        private void calculateASQ3Months(){
 
-        }
-    }
-}  
+}
