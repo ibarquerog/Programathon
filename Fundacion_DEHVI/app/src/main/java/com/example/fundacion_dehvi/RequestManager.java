@@ -15,9 +15,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.JsonObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -254,7 +255,7 @@ public class RequestManager {
     public void requestGetAttendanceByStudentId(String studentId, calificarASQ3Activity ref){
         String requestName = studentId.replaceAll(" ", "%20");
         requestName = "?studentId=" + requestName;
-        //Toast.makeText(getCurrent(), requestName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getCurrent(), requestName, Toast.LENGTH_SHORT).show();
         String requestString = this.connectionString.concat("/Attendance/GetByStudentId" + requestName);
         RequestQueue queue = Volley.newRequestQueue(current);
         JsonArrayRequest req = new JsonArrayRequest(Request.Method.GET, requestString,
@@ -285,22 +286,25 @@ public class RequestManager {
         String requestString = this.connectionString.concat("/Result/AddResults");
         RequestQueue queue = Volley.newRequestQueue(current);
 
+        Log.d("aaaaaaaaaaaaaa", json.toString());
         JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, requestString,
                 json, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 ref.onAddResultsResult(true);
-                Log.d("Response", response.toString());
+                //Log.d("Response", response.toString());
 
-                Toast.makeText(getCurrent(), "" + response.toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getCurrent(), "" + response.toString(), Toast.LENGTH_SHORT).show();
+                //Log.i("dddddd", response.toString());
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Error", "Error: " + error.getMessage());
-                Toast.makeText(getCurrent(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                //Log.d("Error", "Error: " + error.getMessage());
+                //Toast.makeText(getCurrent(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
                 ref.onAddResultsResult(false);
+                //Log.d("dddddd", "Error: " + error.getMessage());
             }
         }) {
             @Override

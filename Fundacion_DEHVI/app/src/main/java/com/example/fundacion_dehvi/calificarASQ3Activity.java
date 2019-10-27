@@ -17,11 +17,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
-import Concretos.Estudiante;
 
 public class calificarASQ3Activity extends AppCompatActivity{
     private calificarASQ3Activity myRef;
@@ -34,6 +31,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
     private TextView textViewAreaName, txtViewEstado;
     private String studentId;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +43,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
         this.selectedType = 0;
         this.myRef = this;
 
-        studentId = getIntent().getStringExtra("ID");
         RequestManager requestManager = new RequestManager(this.getApplicationContext());
         requestManager.requestGetAreas(this);
 
@@ -105,6 +102,8 @@ public class calificarASQ3Activity extends AppCompatActivity{
             @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
 
+        this.selectedType = 0;
+
         btnPrev = findViewById(R.id.PrevBtn);
         btnPrev.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -112,6 +111,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
                 if(selectedType > 0){
                     selectedType--;
                     setIndexValues(selectedType);
+                    getColorStatus(selectedType);
                 }
             }
         });
@@ -123,6 +123,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
                 if(selectedType < 6){
                     selectedType++;
                     setIndexValues(selectedType);
+                    getColorStatus(selectedType);
                 }
             }
         });
@@ -145,27 +146,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
             public void onClick(View v) {
             }
         });
-    }
-
-    public void setIndexValues(int index){
-        JSONArray results = this.getResultsOf(index);
-        if(results == null){
-            return;
-        }
-        else{
-            this.textViewAreaName.setText(this.areaNames.get(index));
-
-            try {
-                sp1.setSelection(results.getJSONObject(0).getInt("value") / 5);
-                sp2.setSelection(results.getJSONObject(1).getInt("value") / 5);
-                sp3.setSelection(results.getJSONObject(2).getInt("value") / 5);
-                sp4.setSelection(results.getJSONObject(3).getInt("value") / 5);
-                sp5.setSelection(results.getJSONObject(4).getInt("value") / 5);
-                sp6.setSelection(results.getJSONObject(5).getInt("value") / 5);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     public int getStatus(int index){
@@ -191,6 +171,106 @@ public class calificarASQ3Activity extends AppCompatActivity{
                 e.printStackTrace();
                 return -1;
             }
+        }
+    }
+
+    public void setIndexValues(int index){
+        JSONArray results = this.getResultsOf(index);
+        if(results == null){
+            return;
+        }
+        else{
+            this.textViewAreaName.setText(this.areaNames.get(index));
+            try {
+                sp1.setSelection(results.getJSONObject(0).getInt("value") / 5);
+                sp2.setSelection(results.getJSONObject(1).getInt("value") / 5);
+                sp3.setSelection(results.getJSONObject(2).getInt("value") / 5);
+                sp4.setSelection(results.getJSONObject(3).getInt("value") / 5);
+                sp5.setSelection(results.getJSONObject(4).getInt("value") / 5);
+                sp6.setSelection(results.getJSONObject(5).getInt("value") / 5);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void setJsonValue(int spinnerId, int value){
+        JSONArray results = this.getResultsOf(this.selectedType);
+        if(results != null){
+            try {
+                results.getJSONObject(spinnerId).put("value", value);
+                Log.i("ddddd", results.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public JSONArray getResultsOf(int index){
+        if(this.evaluation == null){
+            return null;
+        }
+        else{
+            try {
+                return this.evaluation.getJSONArray("resultList").
+                                                            getJSONObject(index).
+                                                                getJSONArray("results");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+    }
+
+
+    public void onGetAreasResult(JSONArray areas){
+
+        if(areas == null){
+            return;
+        }
+        try {
+            JSONObject eval = new JSONObject();
+            eval.put("attendanceId", 0);
+            JSONArray resultList = new JSONArray(), results;
+            JSONObject result, evaluation;
+            for(int i = 0; i < areas.length(); i++){
+
+                areaNames.add(areas.getJSONObject(i).getString("name"));
+
+                result = new JSONObject();
+                results = new JSONArray();
+
+
+                    result.put("areaId", Integer.toString(i));
+
+                    for(int j = 0; j < 6; j++){
+                        evaluation = new JSONObject();
+                        evaluation.put("id", Integer.toString(j));
+                        evaluation.put("index", Integer.toString(j));
+                        evaluation.put("value", 0);
+                        results.put(evaluation);
+                    }
+                    result.put("results", results);
+
+                    resultList.put(result);
+
+
+            }
+            eval.put("resultList", resultList);
+            this.evaluation = eval;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onAddResultsResult(boolean result) {
+        if(result ){
+            Toast.makeText(this.getApplicationContext(), "Se a guardado la evaluacion", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this.getApplicationContext(), "Ha ocurrido un error al realizar la evaluacion", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -264,86 +344,6 @@ public class calificarASQ3Activity extends AppCompatActivity{
                 btnPlan.setVisibility(View.INVISIBLE);
             }
 
-        }
-    }
-
-    public void setJsonValue(int spinnerId, int value){
-        JSONArray results = this.getResultsOf(this.selectedType);
-        if(results != null){
-            try {
-                results.getJSONObject(spinnerId).put("value", value);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public JSONArray getResultsOf(int index){
-
-        if(this.evaluation == null){
-            return null;
-        }
-        else{
-            try {
-                return this.evaluation.getJSONArray("resultList").
-                                                            getJSONObject(index).
-                                                                getJSONArray("results");
-            } catch (JSONException e) {
-                e.printStackTrace();
-                return null;
-            }
-        }
-    }
-
-    public void onGetAreasResult(JSONArray areas){
-
-        if(areas == null){
-            Log.d("dddd", "no se encontraron areas");
-            return;
-        }
-        try {
-            JSONObject eval = new JSONObject();
-            //eval.put("attendanceId", value)-----------------------
-            JSONArray resultList = new JSONArray(), results;
-            JSONObject result, evaluation;
-            for(int i = 0; i < areas.length(); i++){
-
-                areaNames.add(areas.getJSONObject(i).getString("name"));
-
-                result = new JSONObject();
-                results = new JSONArray();
-
-
-                    result.put("areaId", Integer.toString(i));
-
-                    for(int j = 0; j < 6; j++){
-                        evaluation = new JSONObject();
-                        evaluation.put("id", Integer.toString(j));
-                        evaluation.put("index", Integer.toString(j));
-                        evaluation.put("value", 0);
-                        results.put(evaluation);
-                    }
-                    result.put("results", results);
-
-                    resultList.put(result);
-
-
-            }
-            eval.put("resultList", resultList);
-            this.evaluation = new JSONObject();
-            this.evaluation = eval;
-            Log.d("evaluaciones", this.evaluation.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void onAddResultsResult(boolean result) {
-        if(result ){
-            Toast.makeText(this.getApplicationContext(), "Se a guardado la evaluacion", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this.getApplicationContext(), "Ha ocurrido un error al realizar la evaluacion", Toast.LENGTH_SHORT).show();
         }
     }
 }
