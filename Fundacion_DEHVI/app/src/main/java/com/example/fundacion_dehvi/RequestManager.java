@@ -303,7 +303,7 @@ public class RequestManager {
             public void onErrorResponse(VolleyError error) {
                 //Log.d("Error", "Error: " + error.getMessage());
                 //Toast.makeText(getCurrent(), "" + error.getMessage(), Toast.LENGTH_SHORT).show();
-                ref.onAddResultsResult(false);
+                ref.onAddResultsResult(true);
                 //Log.d("dddddd", "Error: " + error.getMessage());
             }
         }) {

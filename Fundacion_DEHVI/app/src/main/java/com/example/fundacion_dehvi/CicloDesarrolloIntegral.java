@@ -41,6 +41,10 @@ public class CicloDesarrolloIntegral extends AppCompatActivity {
         });
     }
 
+    public void onClickAceptar(View view){
+        this.onBackPressed();
+    }
+
     private void loadInfo(){
         TextView nacimiento=findViewById(R.id.text_view_nacimiento);
         TextView dni=findViewById(R.id.text_view_DNI);

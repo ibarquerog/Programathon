@@ -17,7 +17,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class calificarASQ3Activity extends AppCompatActivity{
@@ -29,6 +33,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
     private Button btnPrev, btnNext, btnPlan, btnCalificar, btnCancelar;
     private ArrayList<String> areaNames;
     private TextView textViewAreaName, txtViewEstado;
+    private TextView textFecha;
     private String studentId;
 
 
@@ -39,6 +44,11 @@ public class calificarASQ3Activity extends AppCompatActivity{
         areaNames = new ArrayList();
         textViewAreaName = findViewById(R.id.lbl_tipoArea);
         txtViewEstado = findViewById(R.id.txtViewEstado);
+        textFecha=findViewById(R.id.lbl_Fecha);
+        Date date = Calendar.getInstance().getTime();
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String today = formatter.format(date);
+        textFecha.setText(today);
 
         this.selectedType = 0;
         this.myRef = this;

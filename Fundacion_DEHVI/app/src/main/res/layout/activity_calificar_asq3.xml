@@ -36,29 +36,23 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
+                android:textStyle="bold"
                 android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif"
                 android:text="@string/nombreEstudianteLbl"
                 android:textAppearance="@android:style/TextAppearance.Material.Headline" />
 
-            <Spinner
-                android:layout_width="300dp"
+            <TextView
+                android:id="@+id/lbl_Fecha"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="30dp"
-                 />
-
-
-            <DatePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:outlineAmbientShadowColor="@color/morado"
-                android:layout_marginBottom="25dp"
-                android:padding="25dp" />
-
-
-
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="sans-serif"
+                android:text=""
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                android:textSize="20dp" />
 
             <!-- Rubros de calificacion/!-->
 

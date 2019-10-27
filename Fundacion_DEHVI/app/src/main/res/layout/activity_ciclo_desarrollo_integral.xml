@@ -8,7 +8,7 @@
 
     android:theme="@style/Theme.AppCompat.NoActionBar"
     android:background="@color/blanco"
-    tools:context=".Login">
+    tools:context=".CicloDesarrolloIntegral">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -194,7 +194,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/black_button"
                     android:gravity="center"
-                    android:onClick="onClickBtnLogin"
+                    android:onClick="onClickAceptar"
                     android:paddingBottom="8dp"
                     android:text="Aceptar"
                     android:textColor="#FFFF" />

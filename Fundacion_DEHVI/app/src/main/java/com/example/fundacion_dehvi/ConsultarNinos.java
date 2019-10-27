@@ -63,7 +63,7 @@ public class ConsultarNinos extends AppCompatActivity {
             this.setupRecyclerView(listaEstudiantes);
         }
         catch (Exception e){
-            Toast.makeText(this, "Usted no tiene estudiantes asignados", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Usted no tiene estudiantes asignados", Toast.LENGTH_LONG).show();
         }
     }
 }

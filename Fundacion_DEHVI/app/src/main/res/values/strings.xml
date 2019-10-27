@@ -50,7 +50,7 @@
 
     <!-- Strings para registro de usuarios /-->
     <string name="asq3TestLbl">Test ASQ-3</string>
-    <string name="nombreEstudianteLbl">Estudiante</string>
+    <string name="nombreEstudianteLbl">Fecha</string>
     <string name="fechaLbl">Fecha de aplicacion</string>
     <string name="nombreCuestionarioLbl"> Nombre del cuestionario</string>
     <string name="comunicacionLbl">Comunicacion</string>
