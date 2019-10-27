@@ -19,6 +19,22 @@ public class Estudiante {
         this.firstName=name;
     }
 
+    public String getFormattedDate() {
+        String result = "";
+        for(int i=0;i<dob.length();i++){
+            if(Character.toString(dob.charAt(i)).matches("[A-Z?]")||Character.toString(dob.charAt(i)).matches("[a-z?]")){
+                break;
+            }
+            if(Character.toString(dob.charAt(i)).matches("-")){
+                result+="/";
+            }
+            else {
+                result+=Character.toString(dob.charAt(i));
+            }
+        }
+
+        return result;
+    }
     public String getDob() {
         return dob;
     }
