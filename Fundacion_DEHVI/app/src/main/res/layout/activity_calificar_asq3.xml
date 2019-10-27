@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -13,10 +14,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="20dp"
             android:orientation="vertical"
             android:weightSum="5"
-            tools:layout_editor_absoluteX="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteY="32dp">
 
             <TextView
@@ -44,18 +44,21 @@
             <Spinner
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp" />
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="30dp"
+                 />
 
-            <ScrollView
+
+            <DatePicker
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:outlineAmbientShadowColor="@color/morado"
+                android:layout_marginBottom="25dp"
+                android:padding="25dp" />
 
-                <DatePicker
-                    android:layout_width="350dp"
-                    android:layout_height="300dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp" />
-            </ScrollView>
+
+
 
             <!-- Rubros de calificacion/!-->
 
@@ -66,8 +69,10 @@
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="sans-serif"
+                android:paddingTop="15dp"
                 android:text="@string/nombreCuestionarioLbl"
-                android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/lbl_tipoArea"
@@ -75,39 +80,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
                 android:fontFamily="sans-serif"
                 android:text="@string/comunicacionLbl"
-                android:textAppearance="@android:style/TextAppearance.Material.Headline" />
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                android:textSize="20dp" />
 
 
             <LinearLayout
+                android:layout_margin="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <TextView
                     android:id="@+id/txt_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="1"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="1" />
 
                 <TextView
                     android:id="@+id/txt_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="2"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="2" />
 
                 <TextView
                     android:id="@+id/txt_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="3"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="3" />
 
             </LinearLayout>
 
@@ -139,8 +148,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="15dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -148,24 +159,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="4"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="4" />
 
                 <TextView
                     android:id="@+id/txt_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="5"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="5" />
 
                 <TextView
                     android:id="@+id/txt_6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="6"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="6" />
             </LinearLayout>
 
             <LinearLayout
@@ -253,20 +264,18 @@
 
                 <Button
                     android:id="@+id/registrarBtn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="125dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="30dp"
-                    android:background="#000000"
+                    android:background="@drawable/black_button"
                     android:gravity="center"
                     android:text="@string/calificarLbl"
                     android:textColor="#FFFF" />
 
                 <Button
                     android:id="@+id/cancelBtn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="111dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="30dp"
-                    android:background="#000000"
+                    android:background="@drawable/black_button"
                     android:gravity="center"
                     android:text="@string/cancelarLbl"
                     android:textColor="#FFFF" />
@@ -276,6 +285,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/button"
                     android:text="Crear Plan" />
 
             </LinearLayout>

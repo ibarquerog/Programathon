@@ -134,8 +134,16 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(view.getContext(), "click on item: " + estudiante.getFirstName(), Toast.LENGTH_LONG).show();
-                contex.startActivity(new Intent(contex, calificarASQ3Activity.class));
+                ArrayList<String> datos = new ArrayList<String>();
+                datos.add(listdata.get(position).getFirstName() + " " + listdata.get(position).getLastName());
+                datos.add(listdata.get(position).getFormattedDate());
+                datos.add(Integer.toString(listdata.get(position).getDni()));
+                datos.add(Integer.toString(listdata.get(position).getEarlyBirthAmount()));
+                datos.add(listdata.get(position).getGender());
+                datos.add(listdata.get(position).getJoinDate());
+                Intent intent=new Intent(contex,CicloDesarrolloIntegral.class);
+                intent.putExtra("ESTUDIANTE",datos);
+                contex.startActivity(intent);
             }
         });
     }
@@ -158,5 +166,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
             this.line = (ImageView) itemView.findViewById(R.id.line);
             relativeLayout = (LinearLayout) itemView.findViewById(R.id.relativelayout);
         }
+
+
     }
 }

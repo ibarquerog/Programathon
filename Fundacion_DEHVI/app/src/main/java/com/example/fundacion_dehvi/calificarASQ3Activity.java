@@ -146,6 +146,14 @@ public class calificarASQ3Activity extends AppCompatActivity{
             public void onClick(View v) {
             }
         });
+
+        btnCancelar = findViewById(R.id.cancelBtn);
+        btnCancelar.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myRef.onBackPressed();
+            }
+        });
     }
 
     public int getStatus(int index){
@@ -282,7 +290,7 @@ public class calificarASQ3Activity extends AppCompatActivity{
         }
         else{
             Log.d("ddddddd", sumResult + "   : " + selectedType);
-            this.txtViewEstado.setText(Integer.toString(sumResult));
+            this.txtViewEstado.setText("Total: " + Integer.toString(sumResult));
             if(this.selectedType == 0 && sumResult >= 0 && sumResult < 35){
                 this.txtViewEstado.setBackgroundColor(Color.RED);
                 btnPlan.setVisibility(View.VISIBLE);
